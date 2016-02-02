@@ -50,6 +50,13 @@ $(document).ready(function(){
     
     $('#accordion p').hide();
     $('#accordion li h2').on('click',function(){
+        
+        $('#accordion li h2').not(this).next().slideUp(function(){
+            $(this.previousElementSibling.firstChild).removeClass('fa-chevron-circle-up');
+            $(this.previousElementSibling.firstChild).addClass('fa-chevron-circle-down');
+            $(this.previousElementSibling).data('state','close');
+        });
+        
         var state = $(this).data('state');
         if(state == 'close' ){
             $(this.nextElementSibling).slideDown(function(){
