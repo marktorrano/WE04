@@ -7,7 +7,7 @@
 $(document).ready(function(){
     
     var isOpen = false;
-    var aIsOpen = false;
+    
 
 //    $('#slide-button').on('click', function(){
 //
@@ -46,22 +46,29 @@ $(document).ready(function(){
         $(elem).css('transition' , 'all ' +sec+ 's ease');
     }
     
+    
+    
     $('#accordion p').hide();
     $('#accordion li h2').on('click',function(){
-
-        if(!aIsOpen){
+        var state = $(this).data('state');
+        if(state == 'close' ){
             $(this.nextElementSibling).slideDown(function(){
                 $(this.previousElementSibling.firstChild).removeClass('fa-chevron-circle-down');
                 $(this.previousElementSibling.firstChild).addClass('fa-chevron-circle-up');
             });
-            aIsOpen = true;
+            $(this).data('state','open');
         }else{
            $(this.nextElementSibling).slideUp(function(){
                 $(this.previousElementSibling.firstChild).removeClass('fa-chevron-circle-up');
                 $(this.previousElementSibling.firstChild).addClass('fa-chevron-circle-down');
             }); 
-            aIsOpen = false;
+            $(this).data('state','close');
         }
+    });
+    $('#accordion li h2').on('click',function(){
+        
+        
+        
     });
 
     
